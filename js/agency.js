@@ -36,15 +36,25 @@
   };
   // Collapse now if page is not at top
   navbarCollapse();
+
+  function pauseAllVideos() 
+    { 
+      $("iframe").each(function() { 
+        var src= $(this).attr('src');
+        $(this).attr('src',src);  
+      });
+    }
   // Collapse the navbar when page is scrolled
   $(window).scroll(navbarCollapse);
 
   // Hide navbar when modals trigger
   $('.portfolio-modal').on('show.bs.modal', function(e) {
     $(".navbar").addClass("d-none");
+    pauseAllVideos();
   })
   $('.portfolio-modal').on('hidden.bs.modal', function(e) {
     $(".navbar").removeClass("d-none");
+    pauseAllVideos();
   })
 
 })(jQuery); // End of use strict
